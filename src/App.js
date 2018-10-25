@@ -4,7 +4,7 @@ import apolloClient from "./apolloClient";
 import StarredRepos from "./StarredRepos";
 import TokenForm from "./TokenForm";
 
-class App extends Component {
+export default class App extends Component {
   state = {
     token: null
   };
@@ -29,5 +29,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

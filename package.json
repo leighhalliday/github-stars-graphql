@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@progress/kendo-react-buttons": "^2.3.0",
     "@progress/kendo-react-inputs": "^2.2.0",
     "@progress/kendo-react-intl": "^2.2.0",
     "@progress/kendo-theme-default": "^2.57.0",
@@ -13,12 +14,16 @@
     "apollo-link-context": "^1.0.9",
     "apollo-link-error": "^1.1.1",
     "apollo-link-http": "^1.5.5",
+    "apollo-link-rest": "^0.6.0",
+    "apollo-link-state": "^0.4.2",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
-    "react": "^16.5.2",
+    "lodash.merge": "^4.6.1",
+    "react": "^16.6.0",
     "react-apollo": "^2.2.4",
-    "react-dom": "^16.5.2",
-    "react-scripts": "2.0.4"
+    "react-dom": "^16.6.0",
+    "react-scripts": "2.0.4",
+    "styled-components": "^4.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

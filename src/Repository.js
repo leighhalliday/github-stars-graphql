@@ -19,4 +19,4 @@ const Repository = ({
   </div>
 );
 
-export default Repository;
+export default React.memo(Repository);
