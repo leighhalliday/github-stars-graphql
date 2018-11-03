@@ -5,6 +5,7 @@ import { HttpLink } from "apollo-link-http";
 import { setContext } from "apollo-link-context";
 import { onError } from "apollo-link-error";
 import { withClientState } from "apollo-link-state";
+import { RestLink } from "apollo-link-rest";
 import resolversDefaults from "./resolvers";
 
 const cache = new InMemoryCache();
@@ -29,6 +30,14 @@ const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
   }
 });
 
+const restLink = new RestLink({
+  endpoints: {
+    githubstatus: {
+      uri: "https://githubstatus.herokuapp.com"
+    }
+  }
+});
+
 const authLink = setContext((_, { headers }) => {
   const context = {
     headers: {
@@ -42,7 +51,7 @@ const authLink = setContext((_, { headers }) => {
 const httpLink = new HttpLink({ uri: "https://api.github.com/graphql" });
 
 const client = new ApolloClient({
-  link: ApolloLink.from([errorLink, stateLink, authLink, httpLink]),
+  link: ApolloLink.from([errorLink, stateLink, restLink, authLink, httpLink]),
   cache
 });
 

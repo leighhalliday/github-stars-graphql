@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { ApolloProvider } from "react-apollo";
 import apolloClient from "./apolloClient";
 import StarredRepos from "./StarredRepos";
 import TokenForm from "./TokenForm";
+import Status from "./Status";
 
 export default class App extends Component {
   state = {
@@ -24,7 +25,14 @@ export default class App extends Component {
     return (
       <ApolloProvider client={apolloClient}>
         <h1>Starry Eyed</h1>
-        {token ? <StarredRepos /> : <TokenForm setToken={this.setToken} />}
+        {token ? (
+          <Fragment>
+            <Status />
+            <StarredRepos />
+          </Fragment>
+        ) : (
+          <TokenForm setToken={this.setToken} />
+        )}
       </ApolloProvider>
     );
   }
