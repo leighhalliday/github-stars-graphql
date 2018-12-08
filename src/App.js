@@ -4,6 +4,7 @@ import { ApolloProvider as ApolloProviderHooks } from "react-apollo-hooks";
 import apolloClient from "./apolloClient";
 import StarredRepos from "./StarredRepos";
 import TokenForm from "./TokenForm";
+import Filters from "./Filters";
 import "./app.css";
 
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
             </h1>
             {token ? (
               <Suspense fallback={<span>Suspense loading...</span>}>
+                <Filters />
                 <StarredRepos />
               </Suspense>
             ) : (
