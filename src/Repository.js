@@ -10,7 +10,7 @@ const Repository = ({
     </a>
     <p>
       <small>
-        <em>{pushedAt}</em>
+        <em>{pushedAt.substring(0, 10)}</em>
         {" / "}
         <strong>{languages.nodes.map(node => node.name).join(", ")}</strong>
       </small>

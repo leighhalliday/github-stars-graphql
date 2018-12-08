@@ -3,6 +3,7 @@ import { ApolloProvider } from "react-apollo";
 import apolloClient from "./apolloClient";
 import StarredRepos from "./StarredRepos";
 import TokenForm from "./TokenForm";
+import "./app.css";
 
 class App extends Component {
   state = {
@@ -23,8 +24,15 @@ class App extends Component {
 
     return (
       <ApolloProvider client={apolloClient}>
-        <h1>Starry Eyed</h1>
-        {token ? <StarredRepos /> : <TokenForm setToken={this.setToken} />}
+        <div className="container">
+          <h1>
+            <span role="img" aria-label="starred">
+              ⭐
+            </span>{" "}
+            Repos
+          </h1>
+          {token ? <StarredRepos /> : <TokenForm setToken={this.setToken} />}
+        </div>
       </ApolloProvider>
     );
   }
