@@ -1,21 +1,9 @@
-// import ApolloClient from "apollo-boost";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
 import { setContext } from "apollo-link-context";
 import { onError } from "apollo-link-error";
-
-// const client = new ApolloClient({
-//   uri: "https://api.github.com/graphql",
-//   request: operation => {
-//     operation.setContext({
-//       headers: {
-//         Authorization: `bearer ${sessionStorage.getItem("token")}`
-//       }
-//     });
-//   }
-// });
 
 const cache = new InMemoryCache();
 

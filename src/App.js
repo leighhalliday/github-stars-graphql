@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { ApolloProvider } from "react-apollo";
+import { ApolloProvider as ApolloProviderHooks } from "react-apollo-hooks";
 import apolloClient from "./apolloClient";
 import StarredRepos from "./StarredRepos";
 import TokenForm from "./TokenForm";
@@ -24,15 +25,23 @@ class App extends Component {
 
     return (
       <ApolloProvider client={apolloClient}>
-        <div className="container">
-          <h1>
-            <span role="img" aria-label="starred">
-              ⭐
-            </span>{" "}
-            Repos
-          </h1>
-          {token ? <StarredRepos /> : <TokenForm setToken={this.setToken} />}
-        </div>
+        <ApolloProviderHooks client={apolloClient}>
+          <div className="container">
+            <h1>
+              <span role="img" aria-label="starred">
+                ⭐
+              </span>{" "}
+              Repos
+            </h1>
+            {token ? (
+              <Suspense fallback={<span>Suspense loading...</span>}>
+                <StarredRepos />
+              </Suspense>
+            ) : (
+              <TokenForm setToken={this.setToken} />
+            )}
+          </div>
+        </ApolloProviderHooks>
       </ApolloProvider>
     );
   }

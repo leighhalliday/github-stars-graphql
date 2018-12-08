@@ -1,5 +1,5 @@
 import React from "react";
-import { Query } from "react-apollo";
+import { useQuery } from "react-apollo-hooks";
 import gql from "graphql-tag";
 import Repository from "./Repository";
 
@@ -27,22 +27,12 @@ const STARRED_REPOS_QUERY = gql`
   }
 `;
 
-export default class StarredRepos extends React.Component {
-  render() {
-    return (
-      <div>
-        <Query query={STARRED_REPOS_QUERY} variables={{ numRepos: 25 }}>
-          {({ data, loading }) => {
-            if (loading) {
-              return <span>Loading...</span>;
-            }
+export default function StarredRepos() {
+  const { data } = useQuery(STARRED_REPOS_QUERY, {
+    variables: { numRepos: 25 }
+  });
 
-            return data.viewer.starredRepositories.nodes.map(node => (
-              <Repository data={node} key={node.id} />
-            ));
-          }}
-        </Query>
-      </div>
-    );
-  }
+  return data.viewer.starredRepositories.nodes.map(node => (
+    <Repository data={node} key={node.id} />
+  ));
 }
